@@ -1,10 +1,11 @@
 class Dealer {
     private Hand dealerHand = new Hand();
-
+    private GUI window;
     /**
      * prints the dealer's output in the window
      */
     public Dealer () {
+        window=GUI.getGUI();
         dealerHand.createDeck();
         // prints initial deck
         //System.out.println("Initial deck");
@@ -43,7 +44,8 @@ class Dealer {
 
     public void playHand() {
         // draw cards until dealerHand > 16
-        while (getHandValue() < 16) {
+        while (getHandValue() < 16)
+        {
             int handCount = 0;
             for (int i = 0; i < dealerHand.hand.length; i++) {
                 if (dealerHand.hand[i] != null && handCount > 10) {
@@ -60,6 +62,8 @@ class Dealer {
         // determine if bust
         if (getHandValue() > 21) {
             System.out.println ("The dealer has busted.");
+            window.setDealerDisplay("The dealer has busted.", true);
+            
         }
     }
 } //end class
